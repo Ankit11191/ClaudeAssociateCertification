@@ -88,6 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Certificate & Badges
           </button> */}
+          
         </nav>
 
         {/* Zone 3: Primary Actions */}
