@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -15,33 +15,46 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_RUNNER_FORCED_INTERNAL_NODE_VERSION: node24
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Set up Node
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
+
       - name: Install dependencies
-        run: npm install
-      - name: Build project
+        run: npm install --legacy-peer-deps
+
+      - name: Build production bundle
         run: npm run build
+
+      # Method 1: Deploy to gh-pages branch (works with default "Deploy from a branch" Pages setting)
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+        continue-on-error: true
+
+      # Method 2: Deploy directly via GitHub Actions Pages API (works when Source is set to "GitHub Actions")
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Upload artifact
+        continue-on-error: true
+
+      - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
+        continue-on-error: true
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
