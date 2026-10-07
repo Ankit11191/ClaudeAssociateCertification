@@ -33,9 +33,6 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="block text-base font-semibold tracking-tight text-neutral-100 group-hover:text-amber-400 transition-colors">
               Claude Certification Roadmap
             </span>
-            <span className="block text-xs text-neutral-400">
-              CCAO-F 90-Day Mastery Roadmap
-            </span>
           </button>
         </div>
 
