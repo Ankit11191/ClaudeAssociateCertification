@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Knowledge Vault
           </button>
-          <button
+          /*<button
             onClick={() => setCurrentTab('certificate')}
             className={`transition-colors whitespace-nowrap cursor-pointer py-1 ${
               currentTab === 'certificate'
@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             Certificate & Badges
-          </button>
+          </button> */
         </nav>
 
         {/* Zone 3: Primary Actions */}
