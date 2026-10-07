@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Certificate & Badges
           </button> */}
-          
+
         </nav>
 
         {/* Zone 3: Primary Actions */}
@@ -143,12 +143,12 @@ export const Header: React.FC<HeaderProps> = ({
         >
           Cheat Sheets
         </button>
-        <button
+        {/* <button
           onClick={() => setCurrentTab('certificate')}
           className={`px-2 py-1 whitespace-nowrap ${currentTab === 'certificate' ? 'text-amber-400 font-semibold' : 'text-neutral-400'}`}
         >
           Badges
-        </button>
+        </button> */}
       </div>
     </header>
   );
