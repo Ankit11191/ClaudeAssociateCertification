@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="text-left group cursor-pointer focus:outline-none"
           >
             <span className="block text-base font-semibold tracking-tight text-neutral-100 group-hover:text-amber-400 transition-colors">
-              Claude Certified Associate
+              Claude Certification Roadmap
             </span>
             <span className="block text-xs text-neutral-400">
               CCAO-F 90-Day Mastery Roadmap
