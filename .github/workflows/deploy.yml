@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -35,26 +35,14 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
-      # Method 1: Deploy to gh-pages branch (works with default "Deploy from a branch" Pages setting)
-      - name: Deploy to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist
-          branch: gh-pages
-        continue-on-error: true
-
-      # Method 2: Deploy directly via GitHub Actions Pages API (works when Source is set to "GitHub Actions")
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        continue-on-error: true
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-        continue-on-error: true
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        continue-on-error: true
